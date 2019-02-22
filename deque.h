@@ -117,7 +117,7 @@ class Deque
 
     /* you should decide how to use these two integers */
     int k1;  
-    int k2; 
+    int k2;
 };
 
 #include "deque.cpp"

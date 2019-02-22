@@ -3,7 +3,6 @@
  * Implementation of the Deque class.
  *
  */
-
 /* Constructor for the Deque class */
 template <class T>
 Deque<T>::Deque(){
@@ -21,10 +20,8 @@ void Deque<T>::pushR(T const& newItem)
 {
     if(isEmpty()){
         k1 = 0;
-        k2 = 0;
-    } else {
-        k2++;
     }
+    k2++;
     data.push_back(newItem);
 }
 
@@ -40,9 +37,12 @@ template <class T>
 T Deque<T>::popL()//*************CHECK THE .h FILE FOR MORE INFO, MIGHT BE INCOMPLETE RIGHT NOW***********
 {
     T ret_value = peekL();
-    if(k2 - k1 > k1){                   //If we need to downsize, copy the array into a new and smaller one
+    if(k2 == k1) {               //If there is only one element left in the array set the integers to -1 to represent an empty array
+        k2 = -1;
+        k1 = -1;
+    } else if(k2 - k1 <= k1){                   //If we need to downsize, copy the array into a new and smaller one
         std::vector<T> temp;
-        for(int i = k1; i <= k2; i++){
+        for(int i = k1 + 1; i <= k2; i++){
             temp.push_back(data.at(i));
         }
         data = std::vector<T>();
@@ -66,9 +66,12 @@ template <class T>
 T Deque<T>::popR()//*************CHECK THE .h FILE FOR MORE INFO, MIGHT BE INCOMPLETE RIGHT NOW***********
 {
     T ret_value = peekR();
-    if(k2 - k1 > k1){                   //If we need to downsize, copy the array into a new and smaller one
+    if(k2 == k1) {               //If there is only one element left in the array set the integers to -1 to represent an empty array
+        k2 = -1;
+        k1 = -1;
+    } else if(k2 - k1 <= k1){                   //If we need to downsize, copy the array into a new and smaller one
         std::vector<T> temp;
-        for(int i = k1; i <= k2; i++){
+        for(int i = k1; i < k2; i++){
             temp.push_back(data.at(i));
         }
         data = std::vector<T>();
@@ -115,9 +118,7 @@ T Deque<T>::peekR()
 template <class T>
 bool Deque<T>::isEmpty() const
 {
-    if(k1 == -1 && k2 == -1){
+    if(k1 == -1 && k2 == -1)
         return true;
-    } else {
-        return false;
-    }
+    return false;
 }

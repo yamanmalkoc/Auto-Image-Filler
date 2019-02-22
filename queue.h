@@ -39,13 +39,13 @@ class Queue : public OrderingStructure<T>
     /**
      * Removes the object at the front of the Queue, and returns it to
      * the caller. You may assume that this function is only called
-     * when the Queue is non-empty.
+     * when the Queue is non-empty. 
      *
      * @note This function should have O(1) behavior over n operations!
      *
      * @return The item that used to be at the front of the Queue.
      */
-    T dequeue();
+    T dequeue(); 
 
     /**
      * Adds an element to the ordering structure.
@@ -80,8 +80,8 @@ class Queue : public OrderingStructure<T>
      *
      * @return bool which is true if the Queue is empty, false
      *	otherwise.
-     */
-    bool isEmpty() const;
+     */ 
+    bool isEmpty() const; 
 
   private:
     Deque<T> myQueue;

@@ -7,7 +7,7 @@
 using namespace std;
 
 TEST_CASE("stack::basic functions","[weight=1][part=stack]"){
-    //cout << "Testing Stack..." << endl;
+    cout << "Testing Stack..." << endl;
     Stack<int> intStack;
     vector<int> result;
     vector<int> expected;
@@ -16,13 +16,22 @@ TEST_CASE("stack::basic functions","[weight=1][part=stack]"){
     }
     for (int i = 1; i <= 10; i++) {
         intStack.push(i);
+        cout<< "intStack Peek Value : "<< intStack.peek()<<endl;
     }
+    int counter = 0;
     while (!intStack.isEmpty()) {
         result.push_back(intStack.pop());
+        cout<< "result Peek Value : "<< result.at(counter) << "Counter : "<< counter <<endl;
+        counter++;
+    }
+    cout<<"RESULT : "<<endl;
+    for (int i = 0; i < result.size(); i++) {
+        cout<< result.at(i)<<endl;
     }
     REQUIRE( result == expected);
 }
 TEST_CASE("queue::basic functions","[weight=1][part=queue]"){
+    cout << "Hello There"<<endl;
     Queue<int> intQueue;
     vector<int> result;
     vector<int> expected;
@@ -31,9 +40,15 @@ TEST_CASE("queue::basic functions","[weight=1][part=queue]"){
     }
     for (int i = 1; i <= 10; i++) {
         intQueue.enqueue(i);
+        cout<< "Line Number : "<< __LINE__<<endl;
+        cout<< "intQueue Peek Value : "<< intQueue.peek()<<endl;
     }
+    int counter = 0;
     while (!intQueue.isEmpty()) {
         result.push_back(intQueue.dequeue());
+        cout<< "intQueue Peek Value : "<< intQueue.peek()<<endl;
+        cout<< "result Peek Value : "<< result.at(counter) << "Counter : "<< counter <<endl;
+        counter++;
     }
     REQUIRE( result == expected);
 }
