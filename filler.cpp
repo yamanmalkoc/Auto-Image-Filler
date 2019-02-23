@@ -57,6 +57,30 @@ template <template <class T> class OrderingStructure>
 animation filler::fill(PNG& img, int x, int y, colorPicker& fillColor,
                        double tolerance, int frameFreq)
 {
+    vector<vector<int>> markedPixels; //rows are x, columns are y
+
+    //Create an ordering structure
+    OrderingStructure<vector<int>> os; 
+
+    HSLAPixel curr = img->getPixel(x,y);
+    curr = fillColor.operate()(x,y); 
+    vector<int> point; 
+    point.add(x);
+    point.add(y);
+
+    os.add(point);
+
+    while(!os.isEmpty()){
+      /*  **UPRIGHT(+x,-y), UP(-y), UPLEFT(-x,-y), LEFT(-x), 
+     *        DOWNLEFT(-x,+y), DOWN(+y), DOWNRIGHT(+x,+y), RIGHT(+x)**
+     */
+    vector<int> next = os.remove();
+    vector<HSLAPixel> neighbores; 
+    int currX = next[0];
+    int currY = next[1];
+    neighbores.push_back() 
+    }
+
     /**
      * @todo You need to implement this function!
      *
@@ -76,13 +100,13 @@ animation filler::fill(PNG& img, int x, int y, colorPicker& fillColor,
      *
      * 1.     Remove a point from the ordering structure, and then...
      *
-     *        1.    add its unprocessed neighbors whose color values are 
-     *              within (or equal to) tolerance distance from the center, 
-     *              to the ordering structure.
-     *        2.    use the colorPicker to set the new color of the point.
-     *        3.    mark the point as processed.
-     *        4.    if it is an appropriate frame, send the current PNG to the
-     *              animation (as described below).
+     *        1.    add its unprocessed neighbors whose color values are within
+     *              (or equal to) tolerance distance from the center, to the 
+     *              ordering structure.
+     *        2.    use the colorPicker to set the new color of the neighbors
+     *        3.    mark the neighbors as processed.
+     *        4.    as you process a neighbor, if it is an appropriate frame, 
+     *              send the current PNG to the animation (as described below)."
      *
      * 2.     When implementing your breadth-first-search and
      *        depth-first-search fills, you will need to explore neighboring
@@ -125,5 +149,7 @@ animation filler::fill(PNG& img, int x, int y, colorPicker& fillColor,
      *        animation. This frame will be the final result of the fill, and 
      *        it will be the one we test against.
      */
+
+
 
 } 

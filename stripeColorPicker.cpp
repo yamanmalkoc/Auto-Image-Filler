@@ -2,10 +2,27 @@
 
 stripeColorPicker::stripeColorPicker(HSLAPixel fillColor, int stripeSpacing)
 {
-/* your code here! */
+    color = fillColor; 
+    spacing = stripeSpacing;  
 }
 
+/**
+ * Picks the color for pixel (x, y). If the x or y coordinate is a
+ * multiple of the spacing, it will be filled with the fillColor.
+ * otherwise, it will be filled with white.
+ *
+ * @param x The x coordinate to pick a color for.
+ * @param y The y coordinat to pick a color for.
+ * @return The color chosen for (x, y).
+ */
 HSLAPixel stripeColorPicker::operator()(int x, int y)
 {
-/* your code here! */
+    if(x % spacing == 0){
+        return color; 
+    }
+    HSLAPixel ret; 
+    ret.h = 0;
+    re.s = 0;
+    ret.l = 1.0;
+    return ret; 
 }
