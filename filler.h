@@ -10,6 +10,7 @@
 #include "stack.h"
 #include "queue.h"
 #include "animation.h"
+#include <vector>
 
 
 #include "rainbowColorPicker.h" // given as an example
@@ -112,7 +113,15 @@ namespace filler
         animation fillRainBFS(PNG& img, int x, int y, 
                 long double freq, double tolerance, int frameFreq);
 
+        /*
+        Method to check if a point has been processed already or not, and if it is within the tolerance. 
+        */
+        bool isValidToProcess(PNG& img, vector<int> point,HSLAPixel *centreP, vector<vector<bool>> markedPoints, double tolerance);
 
+        /*
+        Create a point with two integers, method to speed up the process of processing neighbores. 
+        */
+        vector<int> createPoint(int x, int y);
     /**
      * Filling function: a general helper that should be invoked by
      * ALL of the public fill functions parameterized by the appropriate 

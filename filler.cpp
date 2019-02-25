@@ -3,7 +3,7 @@
  * Implementation of functions in the filler namespace. 
  *
  */
-//#include "filler.h"
+#include "filler.h"
 
 animation filler::fillStripeDFS(PNG& img, int x, int y, HSLAPixel fillColor,
                                 int stripeSpacing, double tolerance, int frameFreq)
@@ -53,33 +53,109 @@ animation filler::fillRainBFS(PNG& img, int x, int y,
     return fill<Queue>(img, x, y, a, tolerance, frameFreq);
 }
 
+/*
+Method to obtain a point. Speed up process of examining neighbores. 
+*/
+vector<int> filler::createPoint(int x, int y){
+    vector<int> point;
+    point.push_back(x);
+    point.push_back(y);
+    return point; 
+}
+
+/*
+Method to check if a point has been processed already or not, and if it is within the tolerance. 
+*/
+bool filler::isValidToProcess(PNG& img, vector<int> point,HSLAPixel *centreP, vector<vector<bool>> markedPoints, double tolerance){
+    //check if the point has been processed.
+    int x = point.at(0);
+    int y = point.at(1);
+    //check if the x and y are in the correct range
+    if(x < 0 || x >= img.width() || y < 0 || y >= img.height()){
+        return false;
+    }
+    if(markedPoints.at(x).at(y) == 1){
+        // cout<<"\nmarked\n";
+        return false; 
+    }
+    HSLAPixel *pointP = img.getPixel(x,y); 
+    if(pointP->dist(*centreP) > tolerance){
+        return false; 
+    } 
+    return true; 
+}
+
+
 template <template <class T> class OrderingStructure>
 animation filler::fill(PNG& img, int x, int y, colorPicker& fillColor,
                        double tolerance, int frameFreq)
 {
-    vector<vector<int>> markedPixels; //rows are x, columns are y
+    int count = 0; //To keep track of how many pixels are being added to the animation
+
+    animation a;    //The animation that will be returned. 
+
+    //Create the structure to hold information on pixels having been marked or not
+    //Based on their x and y 
+    int cols = img.width();
+    int rows = img.height();
+
+    vector< vector< bool > > marked( cols, vector<bool>( rows, false ) );
 
     //Create an ordering structure
     OrderingStructure<vector<int>> os; 
 
-    HSLAPixel curr = img->getPixel(x,y);
-    curr = fillColor.operate()(x,y); 
-    vector<int> point; 
-    point.add(x);
-    point.add(y);
+    HSLAPixel *centre = img.getPixel(x,y);
 
-    os.add(point);
+    HSLAPixel original;
+    original = original = *centre; //create a copy of the centre pixel before I process it and change the colour. 
 
-    while(!os.isEmpty()){
-      /*  **UPRIGHT(+x,-y), UP(-y), UPLEFT(-x,-y), LEFT(-x), 
-     *        DOWNLEFT(-x,+y), DOWN(+y), DOWNRIGHT(+x,+y), RIGHT(+x)**
-     */
-    vector<int> next = os.remove();
-    vector<HSLAPixel> neighbores; 
-    int currX = next[0];
-    int currY = next[1];
-    neighbores.push_back() 
+    *centre = fillColor(x,y); 
+    vector<int> centrePoint; 
+    centrePoint.push_back(x);
+    centrePoint.push_back(y);
+    marked.at(x).at(y) = 1; //Set the point as marked. 
+    os.add(centrePoint);
+    count++; 
+    if(count%frameFreq==0){
+        a.addFrame(img);
     }
+
+    while(os.isEmpty()==0){
+
+        vector<int> next = os.remove();
+        vector<vector<int>> neighbores; 
+        int currX = next[0];
+        int currY = next[1];
+        /*
+        UPRIGHT(+x,-y), UP(-y), UPLEFT(-x,-y), LEFT(-x), 
+        DOWNLEFT(-x,+y), DOWN(+y), DOWNRIGHT(+x,+y), RIGHT(+x)**
+        */
+        neighbores.push_back(createPoint(currX+1,currY-1)); //upright
+        neighbores.push_back(createPoint(currX,currY-1));   //up
+        neighbores.push_back(createPoint(currX-1,currY-1)); //upleft
+        neighbores.push_back(createPoint(currX-1,currY));   //left
+        neighbores.push_back(createPoint(currX-1,currY+1)); //downleft
+        neighbores.push_back(createPoint(currX,currY+1));   //down
+        neighbores.push_back(createPoint(currX+1,currY+1)); //downright
+        neighbores.push_back(createPoint(currX+1,currY));   //right
+        //for each neighbore we check if it has been marked and if the distance from the main one is within tolerance. 
+        for(vector<int> n : neighbores){ 
+            if(isValidToProcess(img,n,&original,marked,tolerance)){
+                int xP = n.at(0);
+                int yP = n.at(1); 
+                HSLAPixel *nPixel = img.getPixel(xP,yP);
+                *nPixel = fillColor(xP,yP); 
+                marked.at(xP).at(yP) = 1; //Set the point as marked
+                os.add(n); 
+                count++; 
+                if(count%frameFreq==0){
+                    a.addFrame(img);
+                }
+            }
+        }    
+    }     
+    a.addFrame(img);
+    return a; 
 
     /**
      * @todo You need to implement this function!

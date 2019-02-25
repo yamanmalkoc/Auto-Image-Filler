@@ -22,7 +22,7 @@ HSLAPixel stripeColorPicker::operator()(int x, int y)
     }
     HSLAPixel ret; 
     ret.h = 0;
-    re.s = 0;
+    ret.s = 0;
     ret.l = 1.0;
     return ret; 
 }
