@@ -15,9 +15,12 @@ animation filler::fillStripeDFS(PNG& img, int x, int y, HSLAPixel fillColor,
 animation filler::fillBorderDFS(PNG& img, int x, int y,
                                     HSLAPixel borderColor, double tolerance, int frameFreq)
 {
-    /**
-     * @todo Your code here! 
-     */
+    //get the centre pixel of the image
+    int width = img.width(); 
+    int height = img.height(); 
+    HSLAPixel *cen = img.getPixel(width/2,height/2);
+    borderColorPicker a(borderColor,img,tolerance,*cen);
+    return fill<Stack>(img, x, y, a, tolerance, frameFreq);
 }
 
 /* Given implementation of a DFS rainbow fill. */
@@ -38,9 +41,12 @@ animation filler::fillStripeBFS(PNG& img, int x, int y, HSLAPixel fillColor,
 animation filler::fillBorderBFS(PNG& img, int x, int y,
                                     HSLAPixel borderColor, double tolerance, int frameFreq)
 {
-    /**
-     * @todo Your code here! You should replace the following line with a
-     */
+     //get the centre pixel of the image
+    int width = img.width(); 
+    int height = img.height(); 
+    HSLAPixel *cen = img.getPixel(width/2,height/2);
+    borderColorPicker a(borderColor,img,tolerance,*cen);
+    return fill<Queue>(img, x, y, a, tolerance, frameFreq);
 }
 
 /* Given implementation of a BFS rainbow fill. */
@@ -73,7 +79,6 @@ bool filler::isValidToProcess(PNG& img, vector<int> point,HSLAPixel *centreP, ve
         return false;
     }
     if(markedPoints.at(x).at(y) == 1){
-        // cout<<"\nmarked\n";
         return false; 
     }
     HSLAPixel *pointP = img.getPixel(x,y); 
