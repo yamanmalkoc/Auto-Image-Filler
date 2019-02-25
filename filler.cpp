@@ -8,9 +8,8 @@
 animation filler::fillStripeDFS(PNG& img, int x, int y, HSLAPixel fillColor,
                                 int stripeSpacing, double tolerance, int frameFreq)
 {
-    /**
-     * @todo Your code here! 
-     */
+    stripeColorPicker a(fillColor,stripeSpacing);
+    return fill<Stack>(img, x, y, a, tolerance, frameFreq);
 }
 
 animation filler::fillBorderDFS(PNG& img, int x, int y,
@@ -32,9 +31,8 @@ animation filler::fillRainDFS(PNG& img, int x, int y,
 animation filler::fillStripeBFS(PNG& img, int x, int y, HSLAPixel fillColor,
                                 int stripeSpacing, double tolerance, int frameFreq)
 {
-    /**
-     * @todo Your code here! 
-     */
+    stripeColorPicker a(fillColor,stripeSpacing);
+    return fill<Queue>(img, x, y, a, tolerance, frameFreq);
 }
 
 animation filler::fillBorderBFS(PNG& img, int x, int y,

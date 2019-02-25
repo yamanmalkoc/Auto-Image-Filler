@@ -20,9 +20,8 @@ HSLAPixel stripeColorPicker::operator()(int x, int y)
     if(x % spacing == 0){
         return color; 
     }
+
     HSLAPixel ret; 
-    ret.h = 0;
-    ret.s = 0;
-    ret.l = 1.0;
+    // ret.l = 1.0;
     return ret; 
 }
