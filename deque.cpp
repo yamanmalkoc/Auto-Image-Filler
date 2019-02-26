@@ -75,7 +75,7 @@ T Deque<T>::popR()//*************CHECK THE .h FILE FOR MORE INFO, MIGHT BE INCOM
     if(k2 == k1) {               //If there is only one element left in the array set the integers to -1 to represent an empty array
         k2 = -1;
         k1 = -1;
-    } else if(k2 - k1 <= k1 + 1){                   //If we need to downsize, copy the array into a new and smaller one
+    } else if(k2 - k1 <= k1){                   //If we need to downsize, copy the array into a new and smaller one
         std::vector<T> temp;
         for(int i = k1; i < k2; i++){
             temp.push_back(data.at(i));
