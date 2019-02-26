@@ -1,5 +1,6 @@
 #define CATCH_CONFIG_MAIN
 #include <iostream>
+#include <stdio.h>
 #include "cs221util/catch.hpp"
 #include "stack.h"
 #include "queue.h"
@@ -37,6 +38,7 @@ TEST_CASE("queue::basic functions","[weight=1][part=queue]"){
     }
     REQUIRE( result == expected);
 }
+
 TEST_CASE("queue::empty 4 times","[weight=1][part=queue]"){
     Queue<int> intQueue;
     vector<int> result;
@@ -52,5 +54,37 @@ TEST_CASE("queue::empty 4 times","[weight=1][part=queue]"){
     intQueue.dequeue();
     intQueue.enqueue(4);
     result.push_back(intQueue.dequeue());
+    REQUIRE( result == expected);
+}
+
+TEST_CASE("queue::popLTest","[weight=1][part=queue]"){
+    Queue<int> intQueue;
+    vector<int> result;
+    vector<int> expected;
+    for (int i = 1; i <= 50; i++) {
+        expected.push_back(i);
+    }
+    for (int i = 1; i <= 50; i++) {
+        intQueue.enqueue(i);
+    }
+    while (!intQueue.isEmpty()) {
+        result.push_back(intQueue.dequeue());
+    }
+    REQUIRE( result == expected);
+}
+
+TEST_CASE("queue::resize pushpopLTest","[weight=1][part=queue]"){
+    Queue<int> intQueue;
+    vector<int> result;
+    vector<int> expected;
+    for (int i = 1; i <= 25; i++) {
+        expected.push_back(i);
+    }
+    for (int i = 1; i <= 50; i++) {
+        intQueue.enqueue(i);
+    }
+    for (int i = 1; i <= 25; i++) {
+        result.push_back(intQueue.dequeue());
+    }
     REQUIRE( result == expected);
 }
