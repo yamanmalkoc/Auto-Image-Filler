@@ -50,6 +50,27 @@ class borderColorPicker : public colorPicker
      */
     virtual HSLAPixel operator()(int x, int y);
 
+    /*
+    Check if a specific pixel is in a border.
+    True if coordinate is within a border of 3 pixels. 
+    False, otherwise. 
+    */
+    bool inBorder(int x, int y);
+    
+    /*
+    Check if a specific pixel is out of frame.
+    True if coordinate is out of the frame of the png
+    False, otherwise. 
+    */
+    bool inFrame(int x, int y);
+
+   /*
+    Check if the pixel at coordinate x,y should change its color.
+    True if pixel at coordinate should change it's color. 
+    False, otherwise. 
+    */
+    bool changeColor(int x, int y);
+
   private:
     HSLAPixel color; /**< Color used for the grid border. */
     PNG im;
