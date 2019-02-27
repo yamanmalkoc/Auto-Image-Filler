@@ -112,37 +112,36 @@ PNG testColorPicker(colorPicker& picker)
 //     REQUIRE(result == expected);
 // }
 
-// TEST_CASE("fill::basic border dfs","[weight=1][part=fill]"){
-//     PNG img;
-//     img.readFromFile(SOLIDTESTIMAGE);
-//     HSLAPixel px(200., 1.0, 0.5);
+TEST_CASE("fill::basic border dfs","[weight=1][part=fill]"){
+    PNG img;
+    img.readFromFile(SOLIDTESTIMAGE);
+    HSLAPixel px(200., 1.0, 0.5);
 
-//     animation anim;
-//     anim = filler::fillBorderDFS(img, SOLIDX, SOLIDY, px, SOLIDTOLERANCE, SOLIDFRAMEFREQ);
-//     PNG result = anim.write("images/dfsborder.gif");
-//     result.writeToFile("images/dfsborder.png");
-//     PNG expected; expected.readFromFile("soln_images/dfsborder.png");
-//     REQUIRE(result==expected);
-// }
+    animation anim;
+    anim = filler::fillBorderDFS(img, SOLIDX, SOLIDY, px, SOLIDTOLERANCE, SOLIDFRAMEFREQ);
+    PNG result = anim.write("images/dfsborder.gif");
+    result.writeToFile("images/dfsborder.png");
+    PNG expected; expected.readFromFile("soln_images/dfsborder.png");
+    REQUIRE(result==expected);
+}
 
-// TEST_CASE("fill::basic border bfs","[weight=1][part=fill]"){
-//     PNG img;
-//     img.readFromFile(SOLIDTESTIMAGE);
-//     HSLAPixel px(200., 1.0, 0.5);
+TEST_CASE("fill::basic border bfs","[weight=1][part=fill]"){
+    PNG img;
+    img.readFromFile(SOLIDTESTIMAGE);
+    HSLAPixel px(200., 1.0, 0.5);
 
-//     animation anim;
-//     anim = filler::fillBorderBFS(img, SOLIDX, SOLIDY, px, SOLIDTOLERANCE, SOLIDFRAMEFREQ);
-//     PNG result = anim.write("images/bfsborder.gif");
-//     result.writeToFile("images/bfsborder.png");
-//     PNG expected; expected.readFromFile("soln_images/bfsborder.png");
-//     REQUIRE(result==expected);
-// }
+    animation anim;
+    anim = filler::fillBorderBFS(img, SOLIDX, SOLIDY, px, SOLIDTOLERANCE, SOLIDFRAMEFREQ);
+    PNG result = anim.write("images/bfsborder.gif");
+    result.writeToFile("images/bfsborder.png");
+    PNG expected; expected.readFromFile("soln_images/bfsborder.png");
+    REQUIRE(result==expected);
+}
 
 // TEST_CASE("fill::basic stripe dfs","[weight=1][part=fill]"){
 //     PNG img;
 //     img.readFromFile(GRIDTESTIMAGE);
 //     HSLAPixel px(40., 1.0, 0.5);
-
 //     animation anim;
 //     anim = filler::fillStripeDFS(img, GRIDX, GRIDY, px, GRIDGRIDSPACING,
 //                                      GRIDTOLERANCE, GRIDFRAMEFREQ);
@@ -160,6 +159,7 @@ PNG testColorPicker(colorPicker& picker)
 //     animation anim;
 //     anim = filler::fillStripeBFS(img, GRIDX, GRIDY, px, GRIDGRIDSPACING,
 //                                      GRIDTOLERANCE, GRIDFRAMEFREQ);
+//     cout<<"\n\nMADE IT PAST THE FILL FUNCTION\n\n";
 //     PNG result = anim.write("images/bfsstripe.gif");
 //     result.writeToFile("images/bfsstripe.png");
 //     PNG expected; expected.readFromFile("soln_images/bfsstripe.png");
@@ -181,19 +181,19 @@ PNG testColorPicker(colorPicker& picker)
 //     REQUIRE(result==expected);
 
 // }
-TEST_CASE("fill::basic rainbow bfs","[weight=1][part=fill]"){
+// TEST_CASE("fill::basic rainbow bfs","[weight=1][part=fill]"){
 
-    PNG img;
-    img.readFromFile(RAINTESTIMAGE);
+//     PNG img;
+//     img.readFromFile(RAINTESTIMAGE);
 
-    animation anim;
-    anim = filler::fillRainBFS(img, RAINX, RAINY, RAINFREQ,
-                                         RAINTOLERANCE,
-                                         RAINFRAMEFREQ);
-    PNG result = anim.write("images/bfsrain.gif");
-    result.writeToFile("images/bfsrain.png");
-    PNG expected; expected.readFromFile("soln_images/bfsrain.png");
-    REQUIRE(result==expected);
+//     animation anim;
+//     anim = filler::fillRainBFS(img, RAINX, RAINY, RAINFREQ,
+//                                          RAINTOLERANCE,
+//                                          RAINFRAMEFREQ);
+//     PNG result = anim.write("images/bfsrain.gif");
+//     result.writeToFile("images/bfsrain.png");
+//     PNG expected; expected.readFromFile("soln_images/bfsrain.png");
+//     REQUIRE(result==expected);
 
-}
+// }
 
