@@ -73,6 +73,8 @@ class Queue : public OrderingStructure<T>
      */
     T peek();
 
+    int get_size();
+
     /**
      * Determines if the Queue is empty.
      *

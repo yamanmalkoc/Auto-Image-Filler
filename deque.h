@@ -112,6 +112,8 @@ class Deque
      */
     bool isEmpty() const;
 
+    int get_sizee();
+
   private:
     vector<T> data;  /* Store the deque data here! */
 

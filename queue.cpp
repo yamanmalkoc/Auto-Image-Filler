@@ -71,3 +71,8 @@ bool Queue<T>::isEmpty() const
 {
     return myQueue.isEmpty();
 }
+
+template <class T>
+int Queue<T>::get_size(){
+    return myQueue.get_sizee();
+}
