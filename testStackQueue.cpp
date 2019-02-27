@@ -7,7 +7,7 @@
 //using namespace cs221util;
 using namespace std;
 
-/*TEST_CASE("stack::basic functions","[weight=1][part=stack]"){
+TEST_CASE("stack::basic functions","[weight=1][part=stack]"){
     //cout << "Testing Stack..." << endl;
     Stack<int> intStack;
     vector<int> result;
@@ -72,7 +72,7 @@ TEST_CASE("queue::popLTest","[weight=1][part=queue]"){
     }
     REQUIRE( result == expected);
 }
-/*
+
 TEST_CASE("queue::resize pushpopLTest","[weight=1][part=queue]"){
     Queue<int> intQueue;
     vector<int> result;
@@ -88,7 +88,7 @@ TEST_CASE("queue::resize pushpopLTest","[weight=1][part=queue]"){
         printf("  %i   %i\n", intQueue.get_size(), i);
     }
     REQUIRE( result == expected);
-}*/
+}
 
 TEST_CASE("queue::to find resize bug","[weight=1][part=queue]"){
     Deque<int> intDeque;
