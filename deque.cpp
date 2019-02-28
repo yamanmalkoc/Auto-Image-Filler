@@ -87,6 +87,7 @@ T Deque<T>::popR()//*************CHECK THE .h FILE FOR MORE INFO, MIGHT BE INCOM
         k2 = data.size() - 1;
         k1 = 0;
     } else {
+        data.pop_back();
         k2--;
     }
     return ret_value;
