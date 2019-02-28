@@ -3,7 +3,7 @@
 borderColorPicker::borderColorPicker(HSLAPixel fillColor, PNG & img, double tolerance,HSLAPixel center)
 {
     color = fillColor;
-    im = img; 
+    im = img;     //make a copy of the original image. 
     tol = tolerance;
     ctr = center;
 }
