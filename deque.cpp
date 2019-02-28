@@ -78,6 +78,11 @@ T Deque<T>::popR()//*************CHECK THE .h FILE FOR MORE INFO, MIGHT BE INCOM
         k1 = -1;
     }
     else {                   //If we need to downsize, copy the array into a new and smaller one
+        data.pop_back();
+        k2--;
+    }
+    /*
+    else {                   //If we need to downsize, copy the array into a new and smaller one
         std::vector<T> temp;
         for(int i = k1; i < k2; i++){
             temp.push_back(data.at(i));
@@ -88,6 +93,7 @@ T Deque<T>::popR()//*************CHECK THE .h FILE FOR MORE INFO, MIGHT BE INCOM
         }
         k2--;
     }
+    */
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // else if(k2 - k1 <= k1){                   //If we need to downsize, copy the array into a new and smaller one
     //     std::vector<T> temp;
