@@ -16,9 +16,9 @@ animation filler::fillBorderDFS(PNG& img, int x, int y,
                                     HSLAPixel borderColor, double tolerance, int frameFreq)
 {
     //get the centre pixel of the image
-    int width = img.width(); 
-    int height = img.height(); 
-    HSLAPixel *cen = img.getPixel(width/2,height/2);
+    //int width = img.width(); 
+    //int height = img.height(); 
+    HSLAPixel *cen = img.getPixel(x,y);
     borderColorPicker a(borderColor,img,tolerance,*cen);
     return fill<Stack>(img, x, y, a, tolerance, frameFreq);
 }
@@ -42,9 +42,9 @@ animation filler::fillBorderBFS(PNG& img, int x, int y,
                                     HSLAPixel borderColor, double tolerance, int frameFreq)
 {
      //get the centre pixel of the image
-    int width = img.width(); 
-    int height = img.height(); 
-    HSLAPixel *cen = img.getPixel(width/2,height/2);
+    //int width = img.width(); 
+    //int height = img.height(); 
+    HSLAPixel *cen = img.getPixel(x,y);
     borderColorPicker a(borderColor,img,tolerance,*cen);
     return fill<Queue>(img, x, y, a, tolerance, frameFreq);
 }
