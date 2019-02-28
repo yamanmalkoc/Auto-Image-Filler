@@ -83,8 +83,30 @@ TEST_CASE("queue::resize pushpopLTest","[weight=1][part=queue]"){
     for (int i = 1; i <= 50; i++) {
         intQueue.enqueue(i);
     }
-    for (int i = 1; i <= 25; i++) {
+    for (int i = 1; i <= 50; i++) {
         result.push_back(intQueue.dequeue());
+        printf("  %i   %i\n", intQueue.get_size(), i);
+    }
+    REQUIRE( result == expected);
+}
+
+TEST_CASE("queue::to find resize bug","[weight=1][part=queue]"){
+    Deque<int> intDeque;
+    vector<int> result;
+    vector<int> expected;
+
+    for (int i = 1; i <= 10; i++) {
+        intDeque.pushR(i);
+    }
+    for (int i = 1; i <= 5; i++) {
+        intDeque.popR();
+        printf("Yolo:   %i   %i\n", intDeque.get_sizee(), i);
+    }
+    intDeque.popL();
+    intDeque.popL();
+    printf("After popsicles  %i\n", intDeque.get_sizee());
+    for (int i = 1; i <= 5; i++) {
+        result.push_back(i);
     }
     REQUIRE( result == expected);
 }

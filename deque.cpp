@@ -60,6 +60,7 @@ T Deque<T>::popL()//*************CHECK THE .h FILE FOR MORE INFO, MIGHT BE INCOM
     } else {
         k1++;
     }
+    printf("popLCall:   K1, K2:  %i %i \n", k1, k2);
     return ret_value;
 }
 /**
@@ -75,7 +76,8 @@ T Deque<T>::popR()//*************CHECK THE .h FILE FOR MORE INFO, MIGHT BE INCOM
     if(k2 == k1) {               //If there is only one element left in the array set the integers to -1 to represent an empty array
         k2 = -1;
         k1 = -1;
-    } else if(k2 - k1 <= k1){                   //If we need to downsize, copy the array into a new and smaller one
+    }
+    else {                   //If we need to downsize, copy the array into a new and smaller one
         std::vector<T> temp;
         for(int i = k1; i < k2; i++){
             temp.push_back(data.at(i));
@@ -84,11 +86,24 @@ T Deque<T>::popR()//*************CHECK THE .h FILE FOR MORE INFO, MIGHT BE INCOM
         for(int i = 0; i < temp.size(); i++){
             data.push_back(temp.at(i));
         }
-        k2 = data.size() - 1;
-        k1 = 0;
-    } else {
         k2--;
     }
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // else if(k2 - k1 <= k1){                   //If we need to downsize, copy the array into a new and smaller one
+    //     std::vector<T> temp;
+    //     for(int i = k1; i < k2; i++){
+    //         temp.push_back(data.at(i));
+    //     }
+    //     data = std::vector<T>();
+    //     for(int i = 0; i < temp.size(); i++){
+    //         data.push_back(temp.at(i));
+    //     }
+    //     k2 = data.size() - 1;
+    //     k1 = 0;
+    // } else {
+    //     k2--;
+    // }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     return ret_value;
 }
 
@@ -128,4 +143,10 @@ bool Deque<T>::isEmpty() const
         return true;
     }
     return false;
+}
+
+template <class T>
+int Deque<T>::get_sizee()
+{
+    return data.size();
 }
