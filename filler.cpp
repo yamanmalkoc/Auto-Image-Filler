@@ -5,6 +5,23 @@
  */
 #include "filler.h"
 
+animation filler::fillCustomDFS(PNG& img, int x, int y,
+                                    HSLAPixel borderColor, double tolerance, int frameFreq)
+{
+    HSLAPixel *cen = img.getPixel(x,y);
+    customColorPicker a(borderColor,img,tolerance,*cen);
+    return fill<Stack>(img, x, y, a, tolerance, frameFreq);
+}
+
+animation filler::fillCustomBFS(PNG& img, int x, int y,
+                                    HSLAPixel borderColor, double tolerance, int frameFreq)
+{
+    HSLAPixel *cen = img.getPixel(x,y);
+    customColorPicker a(borderColor,img,tolerance,*cen);
+    return fill<Queue>(img, x, y, a, tolerance, frameFreq);
+}
+
+
 animation filler::fillStripeDFS(PNG& img, int x, int y, HSLAPixel fillColor,
                                 int stripeSpacing, double tolerance, int frameFreq)
 {
@@ -14,10 +31,7 @@ animation filler::fillStripeDFS(PNG& img, int x, int y, HSLAPixel fillColor,
 
 animation filler::fillBorderDFS(PNG& img, int x, int y,
                                     HSLAPixel borderColor, double tolerance, int frameFreq)
-{
-    //get the centre pixel of the image
-    //int width = img.width(); 
-    //int height = img.height(); 
+{ 
     HSLAPixel *cen = img.getPixel(x,y);
     borderColorPicker a(borderColor,img,tolerance,*cen);
     return fill<Stack>(img, x, y, a, tolerance, frameFreq);
@@ -41,9 +55,6 @@ animation filler::fillStripeBFS(PNG& img, int x, int y, HSLAPixel fillColor,
 animation filler::fillBorderBFS(PNG& img, int x, int y,
                                     HSLAPixel borderColor, double tolerance, int frameFreq)
 {
-     //get the centre pixel of the image
-    //int width = img.width(); 
-    //int height = img.height(); 
     HSLAPixel *cen = img.getPixel(x,y);
     borderColorPicker a(borderColor,img,tolerance,*cen);
     return fill<Queue>(img, x, y, a, tolerance, frameFreq);

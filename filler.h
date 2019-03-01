@@ -16,6 +16,7 @@
 #include "rainbowColorPicker.h" // given as an example
 #include "borderColorPicker.h"
 #include "stripeColorPicker.h"
+#include "customColorPicker.h"
 using namespace cs221util;
 
 /**
@@ -25,6 +26,12 @@ using namespace cs221util;
  */
 namespace filler
 {
+        animation fillCustomDFS(PNG& img, int x, int y,
+                                    HSLAPixel borderColor, double tolerance, int frameFreq);
+
+        animation fillCustomBFS(PNG& img, int x, int y,
+                                    HSLAPixel borderColor, double tolerance, int frameFreq); 
+
         /**
          * Performs a flood fill on the given image using a stripe,
          * employing a depth-first-search approach.

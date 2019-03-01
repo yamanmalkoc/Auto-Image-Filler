@@ -10,6 +10,8 @@
 #include "stripeColorPicker.h"
 #include "rainbowColorPicker.h"
 #include "borderColorPicker.h"
+#include "customColorPicker.h"
+
 
 using namespace std;
 using namespace cs221util;
@@ -112,31 +114,55 @@ PNG testColorPicker(colorPicker& picker)
 //     REQUIRE(result == expected);
 // }
 
-TEST_CASE("fill::basic border dfs","[weight=1][part=fill]"){
+// TEST_CASE("fill::basic border dfs","[weight=1][part=fill]"){
+//     PNG img;
+//     img.readFromFile(SOLIDTESTIMAGE);
+//     HSLAPixel px(200., 1.0, 0.5);
+
+//     animation anim;
+//     anim = filler::fillBorderDFS(img, SOLIDX, SOLIDY, px, SOLIDTOLERANCE, SOLIDFRAMEFREQ);
+//     PNG result = anim.write("images/dfsborder.gif");
+//     result.writeToFile("images/dfsborder.png");
+//     PNG expected; expected.readFromFile("soln_images/dfsborder.png");
+//     REQUIRE(result==expected);
+// }
+
+// TEST_CASE("fill::basic border bfs","[weight=1][part=fill]"){
+//     PNG img;
+//     img.readFromFile(SOLIDTESTIMAGE);
+//     HSLAPixel px(200., 1.0, 0.5);
+
+//     animation anim;
+//     anim = filler::fillBorderBFS(img, SOLIDX, SOLIDY, px, SOLIDTOLERANCE, SOLIDFRAMEFREQ);
+//     PNG result = anim.write("images/bfsborder.gif");
+//     result.writeToFile("images/bfsborder.png");
+//     PNG expected; expected.readFromFile("soln_images/bfsborder.png");
+//     REQUIRE(result==expected);
+// }
+
+TEST_CASE("fill::basic custom bfs","[weight=1][part=fill]"){
     PNG img;
-    img.readFromFile(SOLIDTESTIMAGE);
+    img.readFromFile(RAINTESTIMAGE);  //which image?
     HSLAPixel px(200., 1.0, 0.5);
 
     animation anim;
-    anim = filler::fillBorderDFS(img, SOLIDX, SOLIDY, px, SOLIDTOLERANCE, SOLIDFRAMEFREQ);
-    PNG result = anim.write("images/dfsborder.gif");
-    result.writeToFile("images/dfsborder.png");
-    PNG expected; expected.readFromFile("soln_images/dfsborder.png");
-    REQUIRE(result==expected);
+    anim = filler::fillCustomBFS(img, SOLIDX, SOLIDY, px, 1000.0, SOLIDFRAMEFREQ);
+    PNG result = anim.write("images/dfscustom.gif");
+    result.writeToFile("images/bfscustom.png");
+    cout<<"Go check it out!"<<endl;
 }
 
-TEST_CASE("fill::basic border bfs","[weight=1][part=fill]"){
-    PNG img;
-    img.readFromFile(SOLIDTESTIMAGE);
-    HSLAPixel px(200., 1.0, 0.5);
+// TEST_CASE("fill::basic custom dfs","[weight=1][part=fill]"){
+//     PNG img;
+//     img.readFromFile(RAINTESTIMAGE);
+//     HSLAPixel px(200., 1.0, 0.5);
 
-    animation anim;
-    anim = filler::fillBorderBFS(img, SOLIDX, SOLIDY, px, SOLIDTOLERANCE, SOLIDFRAMEFREQ);
-    PNG result = anim.write("images/bfsborder.gif");
-    result.writeToFile("images/bfsborder.png");
-    PNG expected; expected.readFromFile("soln_images/bfsborder.png");
-    REQUIRE(result==expected);
-}
+//     animation anim;
+//     anim = filler::fillCustomDFS(img, SOLIDX, SOLIDY, px, 10, SOLIDFRAMEFREQ);
+//     PNG result = anim.write("images/dfsCustom.gif");
+//     result.writeToFile("images/dfsCustom.png");
+//     cout<<"Go check it out!!"<<endl;
+// }
 
 // TEST_CASE("fill::basic stripe dfs","[weight=1][part=fill]"){
 //     PNG img;
