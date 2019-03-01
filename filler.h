@@ -27,10 +27,10 @@ using namespace cs221util;
 namespace filler
 {
         animation fillCustomDFS(PNG& img, int x, int y,
-                                    HSLAPixel borderColor, double tolerance, int frameFreq);
+                                    HSLAPixel borderColor, double tolerance, int frameFreq, int rad);
 
         animation fillCustomBFS(PNG& img, int x, int y,
-                                    HSLAPixel borderColor, double tolerance, int frameFreq); 
+                                    HSLAPixel borderColor, double tolerance, int frameFreq, int rad); 
 
         /**
          * Performs a flood fill on the given image using a stripe,

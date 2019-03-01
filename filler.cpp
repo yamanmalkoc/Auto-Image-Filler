@@ -6,18 +6,18 @@
 #include "filler.h"
 
 animation filler::fillCustomDFS(PNG& img, int x, int y,
-                                    HSLAPixel borderColor, double tolerance, int frameFreq)
+                                    HSLAPixel borderColor, double tolerance, int frameFreq, int rad)
 {
     HSLAPixel *cen = img.getPixel(x,y);
-    customColorPicker a(borderColor,img,tolerance,*cen);
+    customColorPicker a(borderColor,img,rad,*cen);
     return fill<Stack>(img, x, y, a, tolerance, frameFreq);
 }
 
 animation filler::fillCustomBFS(PNG& img, int x, int y,
-                                    HSLAPixel borderColor, double tolerance, int frameFreq)
+                                    HSLAPixel borderColor, double tolerance, int frameFreq, int rad)
 {
     HSLAPixel *cen = img.getPixel(x,y);
-    customColorPicker a(borderColor,img,tolerance,*cen);
+    customColorPicker a(borderColor,img,rad,*cen);
     return fill<Queue>(img, x, y, a, tolerance, frameFreq);
 }
 

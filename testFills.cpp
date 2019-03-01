@@ -12,7 +12,6 @@
 #include "borderColorPicker.h"
 #include "customColorPicker.h"
 
-
 using namespace std;
 using namespace cs221util;
 
@@ -31,6 +30,7 @@ using namespace cs221util;
 #define SOLIDTESTIMAGE "originals/Canada.png"
 #define SOLIDFRAMEFREQ 100
 
+//#define GIRL "originals/girl.png"
 // use the following for stripe tests
 #define GRIDX 120
 #define GRIDY 75
@@ -146,23 +146,23 @@ TEST_CASE("fill::basic custom bfs","[weight=1][part=fill]"){
     HSLAPixel px(200., 1.0, 0.5);
 
     animation anim;
-    anim = filler::fillCustomBFS(img, SOLIDX, SOLIDY, px, 1000.0, SOLIDFRAMEFREQ);
-    PNG result = anim.write("images/dfscustom.gif");
+    anim = filler::fillCustomBFS(img, SOLIDX, SOLIDY, px, 1, SOLIDFRAMEFREQ,3);
+    PNG result = anim.write("images/bfscustom.gif");
     result.writeToFile("images/bfscustom.png");
     cout<<"Go check it out!"<<endl;
 }
 
-// TEST_CASE("fill::basic custom dfs","[weight=1][part=fill]"){
-//     PNG img;
-//     img.readFromFile(RAINTESTIMAGE);
-//     HSLAPixel px(200., 1.0, 0.5);
+TEST_CASE("fill::basic custom dfs","[weight=1][part=fill]"){
+    PNG img;
+    img.readFromFile(RAINTESTIMAGE);
+    HSLAPixel px(200., 1.0, 0.5);
 
-//     animation anim;
-//     anim = filler::fillCustomDFS(img, SOLIDX, SOLIDY, px, 10, SOLIDFRAMEFREQ);
-//     PNG result = anim.write("images/dfsCustom.gif");
-//     result.writeToFile("images/dfsCustom.png");
-//     cout<<"Go check it out!!"<<endl;
-// }
+    animation anim;
+    anim = filler::fillCustomDFS(img, SOLIDX, SOLIDY, px, 1, SOLIDFRAMEFREQ,4);
+    PNG result = anim.write("images/dfsCustom.gif");
+    result.writeToFile("images/dfsCustom.png");
+    cout<<"Go check it out!!"<<endl;
+}
 
 // TEST_CASE("fill::basic stripe dfs","[weight=1][part=fill]"){
 //     PNG img;

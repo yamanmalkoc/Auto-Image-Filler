@@ -7,6 +7,7 @@
 #define CUSTOMCOLORPICKER_H
 
 #include "colorPicker.h"
+#include <cmath>
 
 /**
  * borderColorPicker: a functor that determines the color that should be used
@@ -36,7 +37,7 @@ class customColorPicker : public colorPicker
      *          the fill region. 
      */
 
-    customColorPicker(HSLAPixel fillColor,PNG & img, double tolerance,HSLAPixel center);
+    customColorPicker(HSLAPixel fillColor, PNG & img, int radius,HSLAPixel center);
 
     /**
      * Picks the color for pixel (x, y). If the x or y coordinate is 
@@ -50,10 +51,12 @@ class customColorPicker : public colorPicker
      */
     virtual HSLAPixel operator()(int x, int y);
 
+    double getDistance(int x, int y);
+
   private:
     HSLAPixel color; /**< Color used for the grid border. */
     PNG im;
-    double tol;
+    int rad;
     HSLAPixel ctr;
 };
 
