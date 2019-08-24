@@ -3,6 +3,7 @@ Fills some pixels of an image with a pattern depending on some characteristics o
 
 
 Breadth-First-Search Algorithm
+
 ![The Original Version of the Image (Before Making it Blocky)](https://i.ibb.co/hcQXP8M/bfsraingirl.gif)
 
 Depth-First-Search Algorithm
